@@ -1,0 +1,74 @@
+{:linters
+ {:unsorted-required-namespaces
+  {:level :error}
+
+  :aliased-namespace-symbol
+  {:level :warning}
+
+  :case-symbol-test
+  {:level :warning}
+
+  :condition-always-true
+  {:level :warning}
+
+  :dynamic-var-not-earmuffed
+  {:level :warning}
+
+  :equals-false
+  {:level :warning}
+
+  :equals-true
+  {:level :warning}
+
+  :def-fn
+  {:level :warning}
+
+  :reduce-without-init
+  {:level :warning}
+
+  :keyword-binding
+  {:level :warning}
+
+  :main-without-gen-class
+  {:level :warning}
+
+  :minus-one
+  {:level :warning}
+
+  :plus-one
+  {:level :warning}
+
+  :redundant-fn-wrapper
+  {:level :warning}
+
+  :redundant-call
+  {:level :warning}
+
+  :refer
+  {:level :warning
+   :exclude [clojure.test]}
+
+  :single-key-in
+  {:level :warning}
+
+  :shadowed-var
+  {:level :warning}
+
+  :unused-alias
+  {:level :warning}
+
+  :used-underscored-binding
+  {:level :warning}
+
+  :unsorted-imports
+  {:level :error}
+
+  :warn-on-reflection
+  {:level :error}
+
+  :unresolved-symbol
+  {:level :error
+   :exclude [(net.cgrand.xforms/for [_ %])]}}
+
+ :lint-as
+ {net.cgrand.xforms/for clojure.core/for}}
