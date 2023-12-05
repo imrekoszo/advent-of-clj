@@ -10,9 +10,13 @@
     (re-seq #"(?<=\s)\d+(?=\s)|\d+$|\|")
     (partition-by #{"|"})
     ((juxt first last))
-    (mapv (fn [s] (into #{} (map parse-long) s)))
+    (mapv set)
     (apply set/intersection)
     (count)))
+
+;; nice trick:
+;; https://github.com/tschady/advent-of-code/blob/88d39e43de692ebd34c317a107996382368c67cc/src/aoc/2023/d04.clj#L6C1-L7C62
+;; (count (re-seq #"(?<=:.*)(?=\b(\d+)\b.*\|.*\b\1\b)" card-str))
 
 (defn match-count->points [match-count]
   (long (math/pow 2 (dec match-count))))
