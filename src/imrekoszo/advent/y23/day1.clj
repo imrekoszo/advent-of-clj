@@ -30,7 +30,7 @@
   (parse-long (str (first-digit s) (last-digit s))))
 
 (defn part1 [input]
-  (transduce (map encoded-number) + 0 input))
+  (transduce (map encoded-number) + input))
 
 (let [re-digits
       (re-pattern (str/join "|" (into (vals word->digit) (keys word->digit))))]
@@ -49,7 +49,7 @@
   (parse-long (str (first-digit' s) (last-digit' s))))
 
 (defn part2 [input]
-  (transduce (map encoded-number') + 0 input))
+  (transduce (map encoded-number') + input))
 
 (comment
 

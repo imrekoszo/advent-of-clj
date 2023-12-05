@@ -40,7 +40,7 @@
       (x/for [[header description] _
               :when (possible-grab? (parse-max-grabs description))]
         (parse-game-id header)))
-    + 0
+    +
     input))
 
 (defn part2 [input]
@@ -49,7 +49,7 @@
       (map #(str/split % #"\:"))
       (map second)
       (map #(->> % parse-max-grabs vals (reduce *))))
-    + 0
+    +
     input))
 
 (comment
