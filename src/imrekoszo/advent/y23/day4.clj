@@ -4,20 +4,21 @@
     [clojure.set :as set]
     [imrekoszo.advent.util :as util]))
 
+(defn card->match-count [card]
+  (->> card
+    (re-seq #"(?<=\s)\d+(?=\s)|\d+$|\|")
+    (partition-by #{"|"})
+    ((juxt first last))
+    (mapv (fn [s] (into #{} (map parse-long) s)))
+    (apply set/intersection)
+    (count)))
+
 (defn part1 [input]
   (transduce
-    (map #(->> %
-            (re-seq #"(?<=\s)\d+(?=\s)|\d+$|\|")
-            (partition-by #{"|"})
-            ((juxt first last))
-            (mapv (fn [s] (into #{} (map parse-long) s)))
-            (apply set/intersection)
-            (count)
-            (dec)
-            (math/pow 2)
-            (long)))
-    +
-    input))
+    (comp
+      (map card->match-count)
+      (map #(->> % (dec) (math/pow 2) (long))))
+    + input))
 
 (comment
 
