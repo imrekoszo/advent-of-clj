@@ -1,7 +1,7 @@
-(ns imrekoszo.advent2023.day2
+(ns imrekoszo.advent.y23.day2
   (:require
     [clojure.string :as str]
-    [imrekoszo.advent2023.util :as util]
+    [imrekoszo.advent.util :as util]
     [net.cgrand.xforms :as x]))
 
 (defn parse-game-id [game-header]
@@ -54,10 +54,9 @@
 
 (comment
 
-  (part1 (util/input-seq "day2/test.txt")) ;; 8
-  (part1 (util/input-seq "day2/input.txt")) ;; 2268
-
-  (part2 (util/input-seq "day2/test.txt")) ;; 2286
-  (part2 (util/input-seq "day2/input.txt")) ;; 63542
+  (part1 (util/input-seq "data/y23/day2/test.txt")) ;; 8
+  (part1 (util/input-seq "data/y23/day2/input.txt")) ;; 2268
+  (part2 (util/input-seq "data/y23/day2/test.txt")) ;; 2286
+  (part2 (util/input-seq "data/y23/day2/input.txt")) ;; 63542
 
   )

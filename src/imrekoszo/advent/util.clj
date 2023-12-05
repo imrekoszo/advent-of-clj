@@ -1,4 +1,4 @@
-(ns imrekoszo.advent2023.util
+(ns imrekoszo.advent.util
   (:require [clojure.java.io :as io]))
 
 (defn input-seq [resource-name]

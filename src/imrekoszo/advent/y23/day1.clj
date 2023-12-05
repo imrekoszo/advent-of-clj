@@ -1,7 +1,7 @@
-(ns imrekoszo.advent2023.day1
+(ns imrekoszo.advent.y23.day1
   (:require
     [clojure.string :as str]
-    [imrekoszo.advent2023.util :as util]
+    [imrekoszo.advent.util :as util]
     [net.cgrand.xforms :as x]))
 
 (def word->digit
@@ -53,9 +53,9 @@
 
 (comment
 
-  (= 142 (part1 (util/input-seq "day1/test.txt")))
-  (= 281 (part2 (util/input-seq "day1/test2.txt")))
+  (= 142 (part1 (util/input-seq "data/y23/day1/test1.txt")))
+  (= 281 (part2 (util/input-seq "data/y23/day1/test2.txt")))
 
-  (part1 (util/input-seq "day1/input.txt")) ;; 54573
-  (part2 (util/input-seq "day1/input.txt")) ;; 54591
+  (part1 (util/input-seq "data/y23/day1/input.txt")) ;; 54573
+  (part2 (util/input-seq "data/y23/day1/input.txt")) ;; 54591
   )
