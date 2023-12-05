@@ -62,10 +62,9 @@
   row, which is next to exactly 2 numbers"
   [three-rows]
   (x/for
-    [sym (:syms (second three-rows))
-     :when (= "*" (:sym sym))
-     :let [sym-coord (:coords sym)
-           value-adjacent-to-current-sym #(when ((:adjacent %) sym-coord) (:value %))
+    [{:keys [sym coords]} (:syms (second three-rows))
+     :when (= "*" sym)
+     :let [value-adjacent-to-current-sym #(when ((:adjacent %) coords) (:value %))
            adjacent-values (x/into []
                              (comp
                                (mapcat :nums)
