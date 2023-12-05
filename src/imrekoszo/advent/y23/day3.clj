@@ -51,8 +51,8 @@
   (x/for
     [{:keys [value adjacent]} (:nums (second three-rows))
      :let [adjacent-to-current-num? #(adjacent (:coords %))]
-     :when (x/some
-             (comp (mapcat :syms) (keep adjacent-to-current-num?))
+     :when (util/xfirst
+             (comp (mapcat :syms) (filter adjacent-to-current-num?))
              three-rows)]
     value))
 
@@ -75,7 +75,7 @@
     (reduce * adjacent-values)))
 
 (defn solve [input]
-  (x/some
+  (util/xfirst
     (comp
       cat
       (map-indexed parse-row)

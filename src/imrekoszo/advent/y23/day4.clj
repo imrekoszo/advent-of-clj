@@ -41,7 +41,7 @@
        (update :cards + all-copies-of-current-card)))))
 
 (defn solve [input]
-  (x/some
+  (util/xfirst
     (x/transjuxt
       {:part1 (comp
                 (map ->match-count)

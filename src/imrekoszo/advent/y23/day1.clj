@@ -21,10 +21,10 @@
 (def filter-digits-xf (filter digits))
 
 (defn first-digit [s]
-  (x/some filter-digits-xf s))
+  (util/xfirst filter-digits-xf s))
 
 (defn last-digit [s]
-  (x/some (comp filter-digits-xf x/last) s))
+  (util/xfirst (comp filter-digits-xf x/last) s))
 
 (defn encoded-number [s]
   (parse-long (str (first-digit s) (last-digit s))))
