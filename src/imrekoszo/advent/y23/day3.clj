@@ -33,7 +33,7 @@
   For numbers, we return their value and adjacent coordinates.
   For symbols, we return their value and coordinates."
   [row-idx row]
-  (x/into {}
+  (x/into {:syms [] :nums []}
     (x/by-key
       #(if (:sym %) :syms :nums)
       (x/into []))
@@ -53,12 +53,13 @@
   [three-rows]
   (x/for
     [{:keys [value adjacent]} (:nums (second three-rows))
+     :let [adjacent-to-current-num? #(adjacent (:coords %))]
      :when (x/some
-             (comp (mapcat :syms) (keep #(adjacent (:coords %))))
+             (comp (mapcat :syms) (keep adjacent-to-current-num?))
              three-rows)]
     value))
 
-(defn product-next-to-symbols-next-to-2-numbers
+(defn products-next-to-symbols-next-to-2-numbers
   "Looks at data from 3 adjacent rows and returns an eduction of the products
   of the numbers (on any of the rows) that are next to a symbol on the middle
   row, which is next to exactly 2 numbers"
@@ -67,15 +68,15 @@
     [sym (:syms (second three-rows))
      :when (= "*" (:sym sym))
      :let [sym-coord (:coords sym)
-           values (x/into []
-                    (comp
-                      (mapcat :nums)
-                      (filter (every-pred some? #((:adjacent %) sym-coord)))
-                      (map :value)
-                      (take 3))
-                    three-rows)]
-     :when (= 2 (count values))]
-    (apply * values)))
+           value-adjacent-to-current-sym #(when ((:adjacent %) sym-coord) (:value %))
+           adjacent-values (x/into []
+                             (comp
+                               (mapcat :nums)
+                               (keep value-adjacent-to-current-sym)
+                               (take 3))
+                             three-rows)]
+     :when (= 2 (count adjacent-values))]
+    (reduce * adjacent-values)))
 
 (defn solve [input]
   (x/some
@@ -85,7 +86,7 @@
       (x/partition 3 1)
       (x/transjuxt
         {:part1 (comp (mapcat numbers-next-to-symbols) (x/reduce +))
-         :part2 (comp (mapcat product-next-to-symbols-next-to-2-numbers) (x/reduce +))}))
+         :part2 (comp (mapcat products-next-to-symbols-next-to-2-numbers) (x/reduce +))}))
     [[""] input [""]]))
 
 (comment
