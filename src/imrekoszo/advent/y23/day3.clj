@@ -26,12 +26,9 @@
 (defn parse-row
   "Returns token information about a row.
 
-  {:numbers [{:value 123 :adjacent #{[1 2] [1 3] ...}} ...]
-   :syms [{:value \"=\" :coords [2 5]} ...]}
-
-  Tokens are either numbers or symbols matching sym-re.
-  For numbers, we return their value and adjacent coordinates.
-  For symbols, we return their value and coordinates."
+  [{:nums [{:value 123 :adjacent #{[1 2] [1 3] ...}} ...]
+    :syms [{:sym \"=\" :coords [2 5]} ...]}
+   ...]"
   [row-idx row]
   (x/into {:syms [] :nums []}
     (x/by-key
